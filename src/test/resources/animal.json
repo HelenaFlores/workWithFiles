@@ -1,0 +1,65 @@
+{
+  "animal": {
+    "birthdate": "2024-04-08T00:00:00.000Z",
+    "breed": "бп",
+    "category": "pet",
+    "color": "кремовый",
+    "deregisteredAt": null,
+    "gender": "male",
+    "id": 26230,
+    "isPhotoRecognized": true,
+    "name": "Барсик",
+    "manipulations": null,
+    "photo": "http://cdn.srv.org.ru/paws-animal-photo/802fd4df-e341-4aba-9e76-926545b30246.jpg",
+    "photoId": "802fd4df-e341-4aba-9e76-926545b30246",
+    "registrationNumber": "67К000026230",
+    "specialSigns": null,
+    "species": "cat",
+    "createdAt": "2026-04-08T15:59:55.829Z"
+  },
+  "marking": {
+    "id": 7322,
+    "date": null,
+    "injectionSite": null,
+    "number": "4634635",
+    "type": "brand"
+  },
+  "owner": {
+    "email": null,
+    "firstname": "Максим",
+    "id": 15275,
+    "patronymic": "Степанович",
+    "phone": "+79654123221",
+    "surname": "Королев",
+    "tin": null
+  },
+  "passport": {
+    "address": null,
+    "date": null,
+    "number": null,
+    "organization": null,
+    "id": 18012
+  },
+  "permissions": [
+    "canReadOwner",
+    "canReadHistory",
+    "canFindMatchByPhoto",
+    "canPrintCertificate",
+    "canDeregister",
+    "canUpdateAnimal",
+    "canUpdatePhoto"
+  ],
+  "region": {
+    "code": "67",
+    "name": "Смоленская область"
+  },
+  "vetStation": {
+    "id": 1
+  },
+  "helppetMatch": {
+    "id": 6,
+    "animalId": 26230,
+    "helppetMatchUrl": "https://helppet.goznak.ru/animal/18399",
+    "userCanDeleteMatch": false
+  }
+}

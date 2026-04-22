@@ -2,9 +2,13 @@ package tests;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import model.AnimalCard;
 import org.junit.jupiter.api.*;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -140,6 +144,41 @@ public class FilesParsingTest{
                 }
                 zis.closeEntry();
             }
+        }
+    }
+
+    @Test
+    void jsonFileParsingTest() throws Exception{
+        try (Reader reader = new InputStreamReader(
+                cl.getResourceAsStream("animal.json")
+        )) {
+            ObjectMapper mapper = new ObjectMapper();
+            AnimalCard actual = mapper.readValue(reader, AnimalCard.class);
+
+            // animal
+            Assertions.assertEquals("2024-04-08T00:00:00.000Z", actual.getAnimal().getBirthdate());
+            Assertions.assertEquals("бп", actual.getAnimal().getBreed());
+            Assertions.assertEquals("pet", actual.getAnimal().getCategory());
+            Assertions.assertEquals("кремовый", actual.getAnimal().getColor());
+            Assertions.assertNull(actual.getAnimal().getDeregisteredAt());
+            Assertions.assertEquals("male", actual.getAnimal().getGender());
+            Assertions.assertEquals(26230, actual.getAnimal().getId());
+            Assertions.assertEquals(true, actual.getAnimal().getIsPhotoRecognized());
+            Assertions.assertEquals("Барсик", actual.getAnimal().getName());
+            Assertions.assertNull(actual.getAnimal().getManipulations());
+            Assertions.assertEquals("http://cdn.srv.org.ru/paws-animal-photo/802fd4df-e341-4aba-9e76-926545b30246.jpg", actual.getAnimal().getPhoto());
+            Assertions.assertEquals("802fd4df-e341-4aba-9e76-926545b30246", actual.getAnimal().getPhotoId());
+            Assertions.assertEquals("67К000026230", actual.getAnimal().getRegistrationNumber());
+            Assertions.assertNull(actual.getAnimal().getSpecialSigns());
+            Assertions.assertEquals("cat", actual.getAnimal().getSpecies());
+            Assertions.assertEquals("2026-04-08T15:59:55.829Z", actual.getAnimal().getCreatedAt());
+
+            //marking
+            Assertions.assertEquals(7322, actual.getMarking().getId());
+            Assertions.assertNull(actual.getMarking().getDate());
+            Assertions.assertNull(actual.getMarking().getInjectionSite());
+            Assertions.assertEquals("4634635", actual.getMarking().getNumber());
+            Assertions.assertEquals("brand", actual.getMarking().getType());
         }
     }
 }

@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.freefair.lombok' version "9.2.0"
 }
 
 group = 'ru.mail.flores01.lena'
@@ -15,6 +16,7 @@ dependencies {
     testImplementation 'com.codeborne:pdf-test:1.5.0'
     testImplementation 'com.codeborne:xls-test:1.4.3'
     testImplementation 'com.opencsv:opencsv:5.9'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.21.2'
 }
 
 test {
