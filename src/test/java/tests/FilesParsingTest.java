@@ -28,15 +28,12 @@ public class FilesParsingTest{
                 cl.getResourceAsStream("qa_guru_Zip.zip")
         )) {
             ZipEntry entry;
-
-            if (zis.getNextEntry() == null) {
-                System.err.println("ФАЙЛ НЕ НАЙДЕН!");
-                Assertions.fail("Zip file qa_guru_Zip.zip not found in classpath");
-            }
+            boolean fileFound = false;
 
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
                 if (name.endsWith(".pdf")) {
+                    fileFound = true;
                     byte[] expectedPdfBytes =
                             Files.readAllBytes(Paths.get("src/test/resources/actCaught.pdf"));
                     byte[] actualPdfContent = zis.readAllBytes();
@@ -45,6 +42,11 @@ public class FilesParsingTest{
                     Assertions.assertEquals(expectedPdf.text, actualPdf.text);
                 }
                 zis.closeEntry();
+            }
+
+            if (!fileFound) {
+                System.err.println("PDF файл не найден в архиве!");
+                Assertions.fail("No PDF file found in archive");
             }
         }
     }
@@ -55,15 +57,12 @@ public class FilesParsingTest{
                 cl.getResourceAsStream("qa_guru_Zip.zip")
         )) {
             ZipEntry entry;
-
-            if (zis.getNextEntry() == null) {
-                System.err.println("ФАЙЛ НЕ НАЙДЕН!");
-                Assertions.fail("Zip file qa_guru_Zip.zip not found in classpath");
-            }
+            boolean fileFound = false;
 
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
                 if (name.endsWith(".xlsx")) {
+                    fileFound = true;
                     byte[] actualXlsxContent = zis.readAllBytes();
                     XLS xls = new XLS(actualXlsxContent);
                     String headerA = xls.excel.getSheetAt(0).getRow(0).getCell(0).getStringCellValue();
@@ -88,6 +87,10 @@ public class FilesParsingTest{
                 }
                 zis.closeEntry();
             }
+            if (!fileFound) {
+                System.err.println("XLSX файл не найден в архиве!");
+                Assertions.fail("No XLSX file found in archive");
+            }
         }
     }
 
@@ -97,16 +100,13 @@ public class FilesParsingTest{
                 cl.getResourceAsStream("qa_guru_Zip.zip")
         )) {
             ZipEntry entry;
-
-            if (zis.getNextEntry() == null) {
-                System.err.println("ФАЙЛ НЕ НАЙДЕН!");
-                Assertions.fail("Zip file qa_guru_Zip.zip not found in classpath");
-            }
+            boolean fileFound = false;
 
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
 
                 if (name.endsWith(".csv")) {
+                    fileFound = true;
                     byte[] actualCsvContent = zis.readAllBytes();
                     String csvString = new String(actualCsvContent, "Windows-1251");
                     CSVReader csvReader = new CSVReader(new StringReader(csvString));
@@ -143,6 +143,10 @@ public class FilesParsingTest{
                     );
                 }
                 zis.closeEntry();
+            }
+            if (!fileFound) {
+                System.err.println("CSV файл не найден в архиве!");
+                Assertions.fail("No CSV file found in archive");
             }
         }
     }
