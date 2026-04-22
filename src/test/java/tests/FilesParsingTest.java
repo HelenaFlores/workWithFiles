@@ -25,6 +25,11 @@ public class FilesParsingTest{
         )) {
             ZipEntry entry;
 
+            if (zis.getNextEntry() == null) {
+                System.err.println("ФАЙЛ НЕ НАЙДЕН!");
+                Assertions.fail("Zip file qa_guru_Zip.zip not found in classpath");
+            }
+
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
                 if (name.endsWith(".pdf")) {
@@ -46,6 +51,11 @@ public class FilesParsingTest{
                 cl.getResourceAsStream("qa_guru_Zip.zip")
         )) {
             ZipEntry entry;
+
+            if (zis.getNextEntry() == null) {
+                System.err.println("ФАЙЛ НЕ НАЙДЕН!");
+                Assertions.fail("Zip file qa_guru_Zip.zip not found in classpath");
+            }
 
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
@@ -83,6 +93,11 @@ public class FilesParsingTest{
                 cl.getResourceAsStream("qa_guru_Zip.zip")
         )) {
             ZipEntry entry;
+
+            if (zis.getNextEntry() == null) {
+                System.err.println("ФАЙЛ НЕ НАЙДЕН!");
+                Assertions.fail("Zip file qa_guru_Zip.zip not found in classpath");
+            }
 
             while ((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
